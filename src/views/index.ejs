@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello, World!</title>
+    </head>
+    <body>
+        <h1>Hello, <%=title%> </h1>
+        <ul>
+            <% data.map((i) => {
+                %><li>
+                    <%= i %>
+                </li><%
+            })%>
+        </ul>
+    </body>
+</html>
