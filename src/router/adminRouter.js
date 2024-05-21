@@ -1,6 +1,6 @@
 const express = require('express');
 const debug = require('debug')('app:adminRouter');
-const { mongoClient } = require('mongodb');
+const { MongoClient } = require('mongodb');
 const sessionData = require('../data/sessions.json');
 
 const adminRouter = express.Router();
@@ -11,15 +11,14 @@ adminRouter
         const url = 'mongodb://user:pass@localhost:27017';
         const dbName = 'fabiotesting';
 
-        (async function mondo(){
+        (async function mongo(){
 
             let client;
             
             try {
                 debug('trying to connected to mongo');
-                client = await mongoClient.connect(url, { useUnifiedTopology: true });
+                client = await MongoClient.connect(url);
                 debug('connected to mongo');
-
                 const db = client.db(dbName);
                 const response = await db.collection('sessions').insertMany(sessionData);
 
@@ -28,11 +27,10 @@ adminRouter
             }
             catch (error) {
                 debug(error.stack);
+                res.send(error.stack);
             }
 
-        }())
-
-        
+        }());
     });
 
 module.exports = adminRouter;
