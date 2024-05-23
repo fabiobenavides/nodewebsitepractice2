@@ -29,6 +29,7 @@ sessionsRouter.route('/')
                 debug(error.stack);
                 res.send(error.stack);
             }
+            client.close();
 
         }());
     });
@@ -56,6 +57,8 @@ sessionsRouter.route('/:id')
                 debug(error.stack);
                 res.send(error.stack);
             }
+
+            client.close();
 
         }());
     });
