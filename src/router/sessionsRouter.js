@@ -4,6 +4,14 @@ const { MongoClient, ObjectId } = require('mongodb');
 
 const sessionsRouter = express.Router();
 
+sessionsRouter.use((req, res, next) => {
+    if(req.user) {
+        next();
+    } else {
+        res.redirect('/auth/signin');
+    }
+     
+});
 
 sessionsRouter.route('/')
     .get((req, res) => {
