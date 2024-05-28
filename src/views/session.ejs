@@ -90,7 +90,8 @@
   <div class="container">
       <div class="col-xs-12 col-sm-4 col-md-4 adj_text">
         <h3><%= session.title %></h3>
-        <h3><%= session.speakers[0].name %></h3>
+        <h3><%= session.speaker.name %></h3>
+        <p> speaker Bio: <%= session.speaker.bio %></p>
         <p> <%= session.description%></p>
       </div>
   </div>
